@@ -60,8 +60,11 @@ def get_settings() -> Settings:
     return Settings(
         monday_api_token=_get("MONDAY_API_TOKEN"),
         monday_api_version=_get("MONDAY_API_VERSION", "2024-10") or "2024-10",
-        deals_board_id=_get("DEALS_BOARD_ID"),
-        work_orders_board_id=_get("WORK_ORDERS_BOARD_ID"),
+        # Board IDs are not secret — default to this project's boards so only the
+        # two real secrets (MONDAY_API_TOKEN, LLM_API_KEY) must be configured.
+        # Override via secrets/env to point at different boards.
+        deals_board_id=_get("DEALS_BOARD_ID", "5030962616"),
+        work_orders_board_id=_get("WORK_ORDERS_BOARD_ID", "5030962628"),
         # Accept LLM_API_KEY, or NVIDIA_API_KEY as a convenience alias.
         llm_api_key=_get("LLM_API_KEY") or _get("NVIDIA_API_KEY"),
         llm_base_url=_get("LLM_BASE_URL", "https://integrate.api.nvidia.com/v1")
