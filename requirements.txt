@@ -1,0 +1,6 @@
+streamlit>=1.36
+openai>=1.40
+requests>=2.32
+pandas>=2.2
+python-dateutil>=2.9
+rapidfuzz>=3.9
